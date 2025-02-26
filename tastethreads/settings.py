@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -44,9 +50,10 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # Required by allauth DO NOT REMOVE
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'tastethreads.urls'
@@ -67,8 +74,32 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tastethreads.wsgi.application'
+# Authentication backends
+AUTHENTICATION_BACKENDS = [
+    # Defualt backend
+    'django.contrib.auth.backends.ModelBackend',
+    # Allauth specific authentiation methods
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
+# Site ID ~ Required for allauth
+SITE_ID = 1
+
+# Allauth settings
+ACCOUNT_LOGIN_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_UNIQUE_EMAIL = True
+
+# Login/Logout redirect URLs
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+WSGI_APPLICATION = 'tastethreads.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -79,6 +110,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    "https://8000-willrhawkin-tastethread-twnfrum08hx.ws-eu118.gitpod.io"
+]
+
 
 
 # Password validation
