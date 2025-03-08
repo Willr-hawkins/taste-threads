@@ -34,28 +34,30 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar" style="background-color: #bde0fe;">
         <div class="container-fluid">
-            <!-- Left space for balance -->
-            <div class="invisible d-flex">
-                <button class="btn btn-outline-secondary">
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
+            <a href=""><i class="bi bi-person-circle dim-gray profile ms-2"></i></a> 
 
             <!-- Centered navbar brand -->
             <a href="" class="navbar-brand mx-auto libre-baskerville">TasteThreads</a>
 
-            <!-- Search toggle button and collapsible search form -->
-            <div>
-                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse">
+            <!-- Search toggle and form -->
+            <div class="search-container">
+                <!-- Search button (visible when search is collapsed) -->
+                <button class="btn dim-gray search-toggle-btn" type="button" data-bs-toggle="collapse" 
+                        data-bs-target="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse">
                     <i class="bi bi-search"></i>
                 </button>
 
-                <div class="collapse position-absolute end-0 mt-2 p-2 bg-light rounded shadow" id="searchCollapse" style="width: 300px; z-index: 1000;">
+                <!-- Search form (expanded) -->
+                <div class="collapse search-form" id="searchCollapse">
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-oultine-success" type="submit">Search</button>
+                        <button class="btn btn-search" type="submit">Search</button>
+                        <button class="btn btn-sm ms-1" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#searchCollapse" aria-expanded="false">
+                            <i class="bi bi-fix"></i>    
+                        </button>
                     </form>
                 </div>
             </div>
@@ -64,5 +66,21 @@
 
     {% block content %}
     {% endblock %}
+
+    <script>
+        // Fix toogle behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchCollapse = document.getElementById('searchCollapse');
+            const toggleBtn = document.querySelector('.search-toggle-btn');
+
+            searchCollapse.addEventListener('show.bs.collapse', function() {
+                toggleBtn.style.visibility = 'hidden';
+            });
+
+            searchCollapse.addEventListener('hidden.bs.collapse', function() {
+                toggleBtn.style.visibility = 'visible';
+            });
+        });
+    </script>
 </body>
 </html>
