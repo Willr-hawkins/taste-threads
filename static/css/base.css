@@ -78,6 +78,22 @@ html, body {
     color: #686868 !important;
 }
 
+.btn-search:hover {
+    border: none !important;
+    background-color: #686868 !important;
+    color: #bde0fe !important;
+}
+
+.btn-close-search {
+    background: none !important;
+    border: none !important;
+    color: #f8a0cb !important;
+}
+
+.btn-close-search:hover {
+    color: #686868 !important;
+}
+
 .search-form form {
     height: 100%;
     display: flex;
@@ -102,6 +118,47 @@ html, body {
     letter-spacing: 0.3vw;
     padding-right: 50px;
     font-size: 1.2rem;
+}
+
+.intro {
+    margin-top: 124px;
+}
+
+.intro-text {
+    font-size: 1.15rem;
+}
+
+.signup-box {
+    background-color: #bde0fe;
+    border: 2.5px solid #686868;
+    border-radius: 25px;
+    padding-top: 9px;
+}
+
+.signup-box h2 {
+    margin-bottom: 17px;
+}
+
+.signup-list li {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.signup-btn {
+    text-decoration: none;
+    font-weight: 700;
+    background-color: #f8a0cb;
+    border: 1.5px solid #686868;
+    border-radius: 20px;
+    color: #686868 !important;
+    padding: 7px;
+}
+
+.popular-recipes {
+    background-color: #f8a0cb;
+    border: 3px solid #686868;
+    border-radius: 20px;
+    margin-top: 82px;
 }
 
 @keyframes scroll-left {
