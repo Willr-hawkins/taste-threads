@@ -133,6 +133,7 @@ html, body {
     border: 2.5px solid #686868;
     border-radius: 25px;
     padding-top: 9px;
+    min-height: 260px;
 }
 
 .signup-box h2 {
@@ -153,6 +154,7 @@ html, body {
     color: #686868 !important;
     padding: 7px;
 }
+
 
 .popular-recipes {
     background-color: #f8a0cb;
