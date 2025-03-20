@@ -153,6 +153,11 @@ html, body {
     border-radius: 20px;
     color: #686868 !important;
     padding: 7px;
+    margin-left: 12px;
+}
+
+.signup-btn:hover {
+    background-color: #F1E9D0;
 }
 
 
