@@ -1,1 +1,1 @@
-web: gunicorn TasteThreads.wsgi --log-file -
+web: gunicorn tastethreads.wsgi --log-file -
