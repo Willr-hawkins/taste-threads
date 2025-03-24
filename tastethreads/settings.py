@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = Flase
 
 ALLOWED_HOSTS = ['*', '8000-willrhawkin-tastethread-twnfrum08hx.ws-eu118.gitpod.io']
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     # My apps
     'home',
+    'recipes',
 ]
 
 MIDDLEWARE = [
