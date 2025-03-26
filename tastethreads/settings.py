@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', '') 
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-i!%hx2#^(cqj(6alm1#^&w4^&378x=&0elmzyq$hiqb$7a7fkz') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = Flase
+DEBUG = True
 
 ALLOWED_HOSTS = ['*', '8000-willrhawkin-tastethread-twnfrum08hx.ws-eu118.gitpod.io']
 
@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    # Crsipy forms
+    "crispy_forms",
+    'crispy_bootstrap5',
+
     # My apps
     'home',
     'recipes',
@@ -56,12 +60,13 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware', # Required by allauth DO NOT REMOVE
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Required by allauth, do not remove
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+SITE_ID = 1
 
 ROOT_URLCONF = 'tastethreads.urls'
 
@@ -80,6 +85,9 @@ TEMPLATES = [
         },
     },
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = ['bootstrap5']
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Authentication backends
 AUTHENTICATION_BACKENDS = [
@@ -101,7 +109,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # Login/Logout redirect URLs
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

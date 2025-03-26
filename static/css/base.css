@@ -100,6 +100,21 @@ html, body {
     align-items: center;
 }
 
+/* Allauth templates */
+.allauth-container {
+    padding-top: 160px;
+}
+
+.allauth-content {
+    padding: 20px !important;
+}
+
+.allauth-content input {
+    width: 50%;
+    border: #f8a0cb solid 3px;
+    border-radius: 20px;
+}
+
 /* Home page styles */
 #home-banner {
     background-color: #f8a0cb;
