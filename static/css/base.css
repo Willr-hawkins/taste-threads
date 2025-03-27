@@ -102,7 +102,8 @@ html, body {
 
 /* Allauth templates */
 .allauth-container {
-    padding-top: 160px;
+    padding-top: 93px;
+    color: #686868;
 }
 
 .allauth-content {
@@ -113,6 +114,15 @@ html, body {
     width: 50%;
     border: #f8a0cb solid 3px;
     border-radius: 20px;
+}
+
+.allauth-content button {
+    border: #f8a0cb solid 3px;
+    border-radius: 20px;
+}
+
+.form-check .form-check-input {
+    width: 18px !important;
 }
 
 /* Home page styles */
