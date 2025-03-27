@@ -102,9 +102,27 @@ html, body {
 
 /* Allauth templates */
 .allauth-container {
-    border: #686868 3px solid !important;
-    border-radius: 20px !important;
-    background-color: #f8a0cb !important;
+    padding-top: 93px;
+    color: #686868;
+}
+
+.allauth-content {
+    padding: 20px !important;
+}
+
+.allauth-content input {
+    width: 50%;
+    border: #f8a0cb solid 3px;
+    border-radius: 20px;
+}
+
+.allauth-content button {
+    border: #f8a0cb solid 3px;
+    border-radius: 20px;
+}
+
+.form-check .form-check-input {
+    width: 18px !important;
 }
 
 /* Home page styles */
