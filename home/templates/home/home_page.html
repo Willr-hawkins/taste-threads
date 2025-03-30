@@ -22,6 +22,16 @@
                     meals are meant to be shared. At TasteThreads, every recipe tells a story – we invite you to become part of ours.</p>
             </div>
             <div class="col-12 col-lg-4 concert-one dim-gray px-lg-4 signup-box">
+                {% if user.is_authenticated %}
+                    <h2 class="text-center">Share With Others:</h2>
+                    <hr>
+                    <div>
+                        <ul class="share-with-list">
+                            <li>Upload your own creations</li>
+                            <li>Give feedback to others recipes aswell as recieve feedback on yours!</li>
+                        </ul>
+                    </div>
+                {% else %}
                     <h2 class="text-center">Sign Up To:</h2>
                     <hr>
                     <div class="row">
@@ -35,6 +45,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -165,7 +165,8 @@ html, body {
     margin-bottom: 17px;
 }
 
-.signup-list li {
+.signup-list li,
+.share-with-list li {
     margin-bottom: 12px;
     font-size: 1.3rem;
 }
