@@ -36,7 +36,21 @@
     <!-- Navbar -->
     <nav class="navbar" style="background-color: #bde0fe;">
         <div class="container-fluid">
-            <a href=""><i class="bi bi-person-circle dim-gray profile ms-2"></i></a> 
+            <div class="dropdown dropend">
+                <button class="profile-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a href=""><i class="bi bi-person-circle dim-gray profile ms-2"></i></a>
+                </button>
+                <ul class="dropdown-menu">
+                    {% if user.is_authenticated %}
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Wishlists</a></li>
+                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                        <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
 
             <!-- Centered navbar brand -->
             <a href="" class="navbar-brand mx-auto libre-baskerville">TasteThreads</a>
