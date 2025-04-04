@@ -227,6 +227,55 @@ html, body {
     margin-top: 82px;
 }
 
+/* recipes page */
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.card-img-container {
+    width: 100%;
+    height: 15vw;
+    max-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: solid 3px #686868;
+    border-radius: 20px;
+}
+
+.card {
+    background-color: #f8a0cb !important;
+    border: solid 5px #686868 !important;
+    border-radius: 20px !important;
+    padding: 20px !important;
+}
+
+.card-body {
+    background-color: #F1E9D0 !important;
+    border: solid 3px #686868;
+    border-radius: 20px !important;
+    margin-top: 10px !important;
+}
+
+.card-footer {
+    background-color: #F1E9D0 !important;
+    padding: 10px 0 !important;
+}
+
+/* Code used from ByteGrad youtube channel */
+#recipes .card:has(.card-img-top) {
+    transition: all 0.3s;
+    color: #686868;
+}
+
+/* Code used from ByteGrad youtube channel */
+#recipes .card:has(.card-img-top):hover {
+    transform: scale(1.05);
+}
+
 @keyframes scroll-left {
     0% {
         transform: translateX(100%);
