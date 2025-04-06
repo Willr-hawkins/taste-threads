@@ -34,29 +34,34 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar" style="background-color: #bde0fe;">
-        <div class="container-fluid">
-            <div class="dropdown dropend">
-                <button class="profile-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <a href=""><i class="bi bi-person-circle dim-gray profile ms-2"></i></a>
-                </button>
-                <ul class="dropdown-menu">
-                    {% if user.is_authenticated %}
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Wishlists</a></li>
-                        <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-                    {% else %}
-                        <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
-                        <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
-                    {% endif %}
-                </ul>
+    <nav class="navbar" style="background-color: #bde0fe; position: relative;">
+        <div class="container-fluid d-flex justify-content align-items-center position-relative">
+            <!-- Left side of Nav: Profile + Recipes link -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown dropend me-2">
+                    <button class="profile-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href=""><i class="bi bi-person-circle dim-gray profile ms-2"></i></a>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Wishlists</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- Link to see all recipes -->
+                <a href="{% url 'recipe_list' %}" class="recipes-link dim-gray libre-baskerville ms-3">Recipes</a>
             </div>
 
             <!-- Centered navbar brand -->
-            <a href="" class="navbar-brand mx-auto libre-baskerville">TasteThreads</a>
+            <a href="{% url 'home' %}" class="navbar-brand navbar-brand-centered libre-baskerville">TasteThreads</a>
 
-            <!-- Search toggle and form -->
-            <div class="search-container">
+            <!-- Right side of Nav: Search toggle -->
+            <div class="search-container d-flex align-items-center">
                 <!-- Search button (visible when search is collapsed) -->
                 <button class="btn dim-gray search-toggle-btn" type="button" data-bs-toggle="collapse" 
                         data-bs-target="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse">

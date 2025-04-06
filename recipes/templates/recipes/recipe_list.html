@@ -4,11 +4,13 @@
     <div class="d-flex justify-content-center min-vh-100">
         <div id="recipes" class="container m-5">
             <h1 class="recipe-title text-center dim-gray">All Recipes</h1>
+            <hr>
             <div class="row">
                 <!-- Create a card for each recipe uploaded to the database. -->
                 {% for recipe in recipes %}
-                    <div class="col-sm-6 sol-md-6 col-lg-4 col-xl-3 pb-2 mb-4 pt-3">
-                        <div class="card h-100">
+                    <div class="card h-100 mb-2 mt-2" style="width: 100%;">
+                        <div class="row g-0">
+                          <div class="col-md-4">
                             <div class="card-img-container">
                                 {% if recipe.image %}
                                 <a href="">
@@ -20,19 +22,41 @@
                                 </a>
                                 {% endif %}
                             </div>
+                          </div>
+                          <div class="col-md-8">
                             <div class="card-body pb-0">
-                                <h4>{{ recipe.recipe_name }}</h4>
-                                <div class="card-footer">
-                                    <p class="card-text">By: {{ recipe.chef }}</p>
-                                    <p class="card-text">Cooking time ~ {{ recipe.cooking_duration }}mins</p>
+                              <h5>{{ recipe.recipe_name }} | <small style="font-size: small;">Written by: {{ recipe.chef }}</small></h5>
+                              <div class="card-footer mt-3">
+                                <p class="card-text recipe-description">{{ recipe.description }}</p>
+                                <p class="card-text"><small class="text-body-secondary">Takes: {{ recipe.cooking_duration }}mins to make!</small></p>
                                 </div>
                             </div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
                 {% empty %}
                     <p>No recipes!</p>
                 {% endfor %}
             </div>
         </div>
     </div>
+
+    <script>
+        function syncCardHeights() {
+            const cards = document.querySelectorAll(".card");
+    
+            cards.forEach(card => {
+                const body = card.querySelector(".card-body");
+                const imgContainer = card.querySelector(".card-img-container");
+    
+                if (body && imgContainer) {
+                    imgContainer.style.height = `${body.offsetHeight}px`;
+                }
+            });
+        }
+    
+        document.addEventListener("DOMContentLoaded", syncCardHeights);
+        window.addEventListener("resize", syncCardHeights);;
+    </script>
 {% endblock %}
+
