@@ -5,35 +5,38 @@
         <div id="recipes" class="container m-5">
             <h1 class="recipe-title text-center dim-gray">All Recipes</h1>
             <hr>
-            <div class="row">
+            <div class="row gx-3">
                 <!-- Create a card for each recipe uploaded to the database. -->
                 {% for recipe in recipes %}
-                    <div class="card h-100 mb-2 mt-2" style="width: 100%;">
-                        <div class="row g-0">
-                          <div class="col-md-4">
-                            <div class="card-img-container">
-                                {% if recipe.image %}
-                                <a href="">
-                                    <img src="{{ recipe.image }}" class="card-img-top" alt="{{ recipe.recipe_name }}">
-                                </a>
-                                {% else %}
-                                <a href="">
-                                    <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top" alt="{{ recipe.recipe_name }}">
-                                </a>
-                                {% endif %}
-                            </div>
-                          </div>
-                          <div class="col-md-8">
-                            <div class="card-body pb-0">
-                              <h5>{{ recipe.recipe_name }} | <small style="font-size: small;">Written by: {{ recipe.chef }}</small></h5>
-                              <div class="card-footer mt-3">
-                                <p class="card-text recipe-description">{{ recipe.description }}</p>
-                                <p class="card-text"><small class="text-body-secondary">Takes: {{ recipe.cooking_duration }}mins to make!</small></p>
+                        <div class="card h-100 w-100 mb-2 mt-2">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <div class="card-img-container">
+                                        {% if recipe.image %}
+                                        <a href="">
+                                            <img src="{{ recipe.image.url }}" class="card-img-top object-fit-cover" alt="{{ recipe.recipe_name }}">
+                                        </a>
+                                        {% else %}
+                                        <a href="">
+                                            <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top object-fit-cover" alt="{{ recipe.recipe_name }}">
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5>{{ recipe.recipe_name }} | <small style="font-size: small;">Written by: {{ recipe.chef}}</small></h5>
+                                        <div class="card-footer mt-3">
+                                            <div class="card-text-wrapper">
+                                                <p class="card-text recipe-description collapsed" id="desc-{{ forloop.counter }}">{{ recipe.description }}</p>
+                                                <button class="read-more-btn" data-target="desc-{{ forloop.counter }}">Read more</button>
+                                            </div>
+                                            <p class="card-text"><small class="text-body-secondary">Takes: {{ recipe.cooking_duration }}mins to make!</small></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
                 {% empty %}
                     <p>No recipes!</p>
                 {% endfor %}
@@ -42,6 +45,7 @@
     </div>
 
     <script>
+        // Sync cards heights together so the image and card-body are the same hieght when in horizontal mode.
         function syncCardHeights() {
             const cards = document.querySelectorAll(".card");
     
@@ -57,6 +61,23 @@
     
         document.addEventListener("DOMContentLoaded", syncCardHeights);
         window.addEventListener("resize", syncCardHeights);;
+
+        // Function to allow the recipe description to be collapsed on smaller screens and expanded with a button.
+        document.addEventListener("DOMContentLoaded", function () {
+                const buttons = document.querySelectorAll(".read-more-btn");
+
+                buttons.forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        const targetId = btn.getAttribute("data-target");
+                        const desc = document.getElementById(targetId);
+
+                        desc.classList.toggle("expanded");
+                        desc.classList.toggle("collapsed");
+
+                        btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
+                    });
+                });
+            });
     </script>
 {% endblock %}
 

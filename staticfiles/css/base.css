@@ -268,12 +268,16 @@ html, body {
     border: solid 3px #686868;
     border-radius: 20px !important;
     margin-left: 10px;
+    min-height: 220px;
 }
 
 .card-footer {
     background-color: #F1E9D0 !important;
     padding: 10px 0 !important;
+    width: 100%;
+    max-width: 100%;
 }
+
 
 /* Code used from ByteGrad youtube channel */
 #recipes .card:has(.card-img-top) {
@@ -285,6 +289,15 @@ html, body {
 #recipes .card:has(.card-img-top):hover {
     transform: scale(1.05);
 }
+
+.recipe-description {
+    overflow: visible;
+    display: block;
+}
+
+.read-more-btn {
+    display: none;
+} 
 
 @keyframes scroll-left {
     0% {
@@ -301,6 +314,7 @@ html, body {
     .card-body {
         margin-left: 0;
         margin-top: 10px;
+        min-height: none;
     }
 
     .card-img-container {
@@ -308,7 +322,27 @@ html, body {
         height: 250px !important;
     }
 
-    .recipe-description {
-        display: none;
+    .recipe-description.collapsed {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .recipe-description.expanded {
+        -webkit-line-clamp: unset;
+        overflow: visible;
+    }
+
+    .read-more-btn {
+        display: inline;
+        font-size: 0.9rem;
+        color: #f8a0cb;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        background: none;
+        padding: 0;
+        margin-top: 5px;
     }
 }
