@@ -1,14 +1,13 @@
 from django.contrib import admin
-from .models import Recipe
-from django import forms
+from .models import Recipe, Ingredient
 
 # Register your models here.
-class RecipeAdminForm(forms.ModelForm):
-    class Meta:
-        model = Recipe
-        fields = '__all__'
+class IngredientInline(admin.TabularInline):
+    model = Recipe.ingredients.through
+    extra = 1
 
 class RecipeAdmin(admin.ModelAdmin):
-    form = RecipeAdminForm
+    inlines = [IngredientInline]
 
 admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Ingredient)
