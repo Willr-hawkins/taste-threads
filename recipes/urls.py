@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import recipe_list
+from .views import recipe_list, test_upload_view
 
 urlpatterns = [
     path('', recipe_list, name='recipe_list'),

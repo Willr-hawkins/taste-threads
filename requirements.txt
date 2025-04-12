@@ -1,6 +1,6 @@
 asgiref==3.8.1
-boto3==1.37.31
-botocore==1.37.31
+boto3==1.37.32
+botocore==1.37.32
 crispy-bootstrap5==2024.10
 dj-database-url==2.3.0
 Django==5.1.7
