@@ -39,7 +39,7 @@ class Recipe(models.Model):
         help_text='Cooking time in minutes',
     )
     image = models.ImageField(upload_to='recipes/', storage=S3Boto3Storage(), null=True, blank=True)
-    date = models.DateTimeField(auto_now_add=True)
+    posted_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.recipe_name

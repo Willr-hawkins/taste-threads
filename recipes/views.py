@@ -5,7 +5,7 @@ from .models import Recipe
 
 def recipe_list(request):
     """ A view to show a list of all recipes on the site. """
-    recipes = Recipe.objects.all().order_by('-date')  # Fetch all recipes, latest first
+    recipes = Recipe.objects.all().order_by('-posted_at')  # Fetch all recipes, latest first
     return render(request, 'recipes/recipe_list.html', {'recipes': recipes, 'MEDIA_URL': settings.MEDIA_URL})
 
 def recipe_detail(request, recipe_id):

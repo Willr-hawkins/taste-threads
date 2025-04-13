@@ -25,6 +25,8 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
+                                        <small style="font-size: small;">Posted {{ recipe.posted_at|timesince }} ago.</small>
+                                        <hr style="width: 25%;">
                                         <h5>{{ recipe.recipe_name }} | <small style="font-size: small;">Written by: {{ recipe.chef}}</small></h5>
                                         <div class="card-footer mt-3">
                                             <div class="card-text-wrapper">
