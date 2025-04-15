@@ -308,6 +308,25 @@ html, body {
     }
 }
 
+/* Recipe details page */
+.recipe-img img{
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+}
+
+.recipe_details {
+    margin-bottom: 50px;
+}
+
+.return-link a {
+    text-decoration: none !important;
+    color: #f8a0cb !important;
+    font-size: 1.2rem;
+}
 
 /* phone sized screeens */
 @media (max-width: 767px) {

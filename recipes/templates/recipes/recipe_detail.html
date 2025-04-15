@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="dim-gray">{{ recipe.recipe_name }}</h1>
+    <div class="container recipe_details">
+        <a class="return-link float-start" style="margin-bottom: 25px;" href="{% url 'recipe_list' %}"><i class="bi bi-arrow-left-square-fill"></i>Back To All Recipes</a>
+        {% if recipe.image %}
+            <div class="recipe-img mt-5">
+                <img src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">
+            </div>
+        {% endif %}
+        <h3 class="carnation-pink mt-5 mb-4 text-center" style="font-size: 2.5rem; font-weight: 600;">{{ recipe.recipe_name }}</h3>
+        <hr>
+        <p class="dim-gray" style="font-size: 1.4rem;">{{ recipe.description }}</p>
+        <hr>
+        <h5 class="carnation-pink">Ingredients:</h5>
+        <ul>
+            {% for ingredient in recipe.ingredients.all %}
+                <li class="dim-gray mb-2">{{ ingredient.quantity }} {{ ingredient.get_unit_of_measurement_display }} of {{ ingredient.name }}</li>
+            {% endfor %}
+        </ul>
+        <hr>
+        <h5 class="carnation-pink">Instructions:</h5>
+        <ol style="margin-bottom: 50px;">
+            {% for step in recipe.instructions.splitlines %}
+                {% if step %}
+                    <li class="dim-gray mb-3">{{ step }}</li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+    </div>
 {% endblock %}
