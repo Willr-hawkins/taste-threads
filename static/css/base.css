@@ -318,14 +318,16 @@ html, body {
     margin: 0 auto;
 }
 
-.recipe_details {
-    margin-bottom: 50px;
-}
-
-.return-link a {
+.return-link {
     text-decoration: none !important;
     color: #f8a0cb !important;
     font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.return-link:hover {
+    color: #686868 !important;
+    transform: scale(1.05);
 }
 
 /* phone sized screeens */

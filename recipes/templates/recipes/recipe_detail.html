@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="container recipe_details">
-        <a class="return-link float-start" style="margin-bottom: 25px;" href="{% url 'recipe_list' %}"><i class="bi bi-arrow-left-square-fill"></i>Back To All Recipes</a>
+    <div class="container" style="padding-bottom: 50px;">
+        <a class="return-link float-start" style="margin-bottom: 25px; text-decoration: none;" href="{% url 'recipe_list' %}"><i class="bi bi-arrow-left-square-fill"></i> Back To All Recipes</a>
         {% if recipe.image %}
             <div class="recipe-img mt-5">
                 <img src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">
@@ -15,16 +16,14 @@
         <h5 class="carnation-pink">Ingredients:</h5>
         <ul>
             {% for ingredient in recipe.ingredients.all %}
-                <li class="dim-gray mb-2">{{ ingredient.quantity }} {{ ingredient.get_unit_of_measurement_display }} of {{ ingredient.name }}</li>
+                <li class="dim-gray mb-2">{{ ingredient.formatted_quantity }} {{ ingredient.display_unit }} of {{ ingredient.name }}</li>
             {% endfor %}
         </ul>
         <hr>
         <h5 class="carnation-pink">Instructions:</h5>
-        <ol style="margin-bottom: 50px;">
-            {% for step in recipe.instructions.splitlines %}
-                {% if step %}
-                    <li class="dim-gray mb-3">{{ step }}</li>
-                {% endif %}
+        <ol>
+            {% for instruction in recipe.instruction_steps.all %}
+                    <li class="dim-gray mb-3">{{ instruction.step }}</li>
             {% endfor %}
         </ol>
     </div>
