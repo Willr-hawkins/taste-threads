@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     # My apps
     'home',
     'recipes',
+    'profiles',
 ]
 
 MIDDLEWARE = [

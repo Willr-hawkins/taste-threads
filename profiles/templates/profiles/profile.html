@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" style="padding-bottom: 20px;">
+        <h1 class="carnation-pink text-center mt-5 profile-title">Your Profile</h1>
+        <hr>
+        <div class="profile-container">
+            <div class="container">
+                <div class="dropdown dropstart">
+                    <button class="profile-settings float-end" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-gear-wide-connected dim-gray settings"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Wishlists</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+                <img src="{{ userprofile.profile_image.url }}" class="profile-image mx-auto d-block" alt="Profile Image">
+                <hr class="mx-auto" style="width: 50%; border-top: 2px solid #686868; opacity: 0.8;">
+                <h2 class="dim-gray text-center mt-3">{{ userprofile.user.username }}</h2>
+                <hr class="mx-auto" style="width: 10%; border-top: 2px dashed #686868; opacity: 0.8;">
+                <p class="dim-gray">{{ userprofile.bio }}</p>
+                <hr class="mx-auto mt-4 mb-3" style="width: 50%; border-top: 2px solid #686868; opacity: 0.8;">
+                <h3 class="dim-gray text-center mt-2">My Recipes</h3>
+            </div>
+            <div class="profile-recipes container mt-4">
+                <div class="row">
+                    {% for recipe in recipes %}
+                        {% if request.user == recipe.chef %}
+                            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                                <div class="profile-recipe-card" style="max-width: 22rem;">
+                                    <div class="card-img-container">
+                                        {% if recipe.image %}
+                                        <a href="{% url 'recipe_detail' recipe.id %}">
+                                            <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.recipe_name }}">
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="profile-card-body">
+                                        <h3 class="card-text dim-gray text-center">{{ recipe.recipe_name }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

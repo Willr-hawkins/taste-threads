@@ -39,11 +39,11 @@
             <div class="d-flex align-items-center">
                 <div class="dropdown dropend me-2">
                     <button class="profile-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <a href=""><i class="bi bi-person-circle dim-gray profile ms-2"></i></a>
+                        <i class="bi bi-person-circle dim-gray profile ms-2"></i>
                     </button>
                     <ul class="dropdown-menu">
                         {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'user_profile' %}">Profile</a></li>
                             <li><a class="dropdown-item" href="#">Wishlists</a></li>
                             <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                         {% else %}
