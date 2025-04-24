@@ -381,6 +381,44 @@ html, body {
     color: #f8a0cb;
 }
 
+.edit-profile-form input,
+.edit-profile-form textarea,
+.edit-profile-form .form-select {
+    border: solid 3px #f8a0cb;
+    background-color: #F1E9D0;
+    border-radius: 10px;
+}
+
+.edit-profile-form input:focus,
+.edit-profile-form textarea:focus,
+.edit-profile-form .form-select:focus {
+    background-color: #F1E9D0;
+    border-radius: 10px;
+}
+
+.edit-profile-form .input-group {
+    border: solid 3px #f8a0cb;
+    border-radius: 10px;
+}
+
+.edit-profile-form .form-check input {
+    border: solid 1.5px #686868;
+    background-color: white;
+}
+
+.edit-form-btn {
+    border: solid 3px #f8a0cb;
+    border-radius: 10px;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.edit-form-btn:hover {
+    transform: scale(1.1);
+    background-color: #f8a0cb;
+}
+
+
 /* phone sized screeens */
 @media (max-width: 767px) {
     .card-body {

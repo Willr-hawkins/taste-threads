@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="profile-container" style="margin-top: 100px;">
+        <div class="container">
+            <h2 class="carnation-pink text-center mt-3">Edit Profile</h2>
+            <hr class="mx-auto" style="width: 50%; border-top: 2px solid #686868; opacity: 0.8;">
+            <form class="edit-profile-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="edit-form-btn" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -112,6 +112,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 # Login/Logout redirect URLs
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/edit/'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
