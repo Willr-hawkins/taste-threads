@@ -10,19 +10,19 @@
     {% endblock %}
 
     {% block corecss %}
-        <!-- Bootstrap CSS link -->
+        <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <!-- Bootsrap icons CSS link -->
+              integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- Bootstrap icons CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-        <!-- Link to base.css file -->
+        <!-- Custom CSS -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block corejs %}
-        <!-- Boostrap JS and popper links -->
+        <!-- Bootstrap JS and Popper -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" 
                 integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
@@ -34,68 +34,95 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar" style="background-color: #bde0fe; position: relative;">
-        <div class="container-fluid d-flex justify-content align-items-center position-relative">
-            <!-- Left side of Nav: Profile + Recipes link -->
-            <div class="d-flex align-items-center">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <!-- Offcanvas toggler for small screens -->
+            <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav"
+                aria-controls="offcanvasNav">
+                <i class="bi bi-list" style="font-size: 1.5rem;"></i>
+            </button>
+
+            <!-- Left side of Nav (hidden on small screens) -->
+            <div class="d-none d-md-flex align-items-center">
                 <div class="dropdown dropend me-2">
                     <button class="profile-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle dim-gray profile ms-2"></i>
                     </button>
                     <ul class="dropdown-menu">
                         {% if user.is_authenticated %}
-                            <li><a class="dropdown-item" href="{% url 'user_profile' %}">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Wishlists</a></li>
-                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                            <li><a class="dropdown-item libre-baskerville" href="{% url 'user_profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item libre-baskerville" href="#">Wishlists</a></li>
+                            <li><a class="dropdown-item libre-baskerville" href="{% url 'account_logout' %}">Logout</a></li>
                         {% else %}
-                            <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
-                            <li><a class="dropdown-item" href="{% url 'account_signup' %}">Sign Up</a></li>
+                            <li><a class="dropdown-item libre-baskerville" href="{% url 'account_login' %}">Login</a></li>
+                            <li><a class="dropdown-item libre-baskerville" href="{% url 'account_signup' %}">Sign Up</a></li>
                         {% endif %}
                     </ul>
                 </div>
-                <!-- Link to see all recipes -->
                 <a href="{% url 'recipe_list' %}" class="recipes-link dim-gray libre-baskerville ms-3">Recipes</a>
             </div>
 
             <!-- Centered navbar brand -->
-            <a href="{% url 'home' %}" class="navbar-brand navbar-brand-centered libre-baskerville">TasteThreads</a>
+            <a href="{% url 'home' %}" class="navbar-brand mx-auto libre-baskerville">TasteThreads</a>
 
-            <!-- Right side of Nav: Search toggle -->
+            <!-- Right side: Search toggle -->
             <div class="search-container d-flex align-items-center">
-                <!-- Search button (visible when search is collapsed) -->
-                <button class="btn dim-gray search-toggle-btn" type="button" data-bs-toggle="collapse" 
+                <button class="btn dim-gray search-toggle-btn" type="button" data-bs-toggle="collapse"
                         data-bs-target="#searchCollapse" aria-expanded="false" aria-controls="searchCollapse">
                     <i class="bi bi-search"></i>
                 </button>
+            </div>
+        </div>
 
-                <!-- Search form (expanded) -->
-                <div class="collapse search-form" id="searchCollapse">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-search" type="submit">Search</button>
-                        <button class="btn btn-close-search ms-1" type="button" data-bs-toggle="collapse" 
-                                data-bs-target="#searchCollapse" aria-expanded="false">
-                                <i class="bi bi-x-circle"></i>    
-                        </button>
-                    </form>
+        <!-- Search form (expanded) -->
+        <div class="collapse search-form" id="searchCollapse">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-search" type="submit">Search</button>
+                <button class="btn btn-close-search ms-1" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#searchCollapse" aria-expanded="false">
+                    <i class="bi bi-x-circle"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Offcanvas menu for small screens (TOP) -->
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+            <div class="offcanvas-header">
+                <h3 class="offcanvas-title dim-gray libre-baskerville" id="offcanvasNavLabel">Menu</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body d-flex justify-content-center">
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'user_profile' %}">Profile</a>
+                        <a class="nav-link dim-gray libre-baskerville" href="#">Wishlists</a>
+                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'account_logout' %}">Logout</a>
+                    {% else %}
+                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'account_login' %}">Login</a>
+                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'account_signup' %}">Sign Up</a>
+                    {% endif %}
+                    <a class="nav-link dim-gray libre-baskerville" href="{% url 'recipe_list' %}">Recipes</a>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- Main Content -->
     {% block content %}
     {% endblock %}
 
+    <!-- Scripts -->
     <script>
-        // Fix toogle behavior
-        document.addEventListener('DOMContentLoaded', function() {
+        // Fix search toggle behavior
+        document.addEventListener('DOMContentLoaded', function () {
             const searchCollapse = document.getElementById('searchCollapse');
             const toggleBtn = document.querySelector('.search-toggle-btn');
 
-            searchCollapse.addEventListener('show.bs.collapse', function() {
+            searchCollapse.addEventListener('show.bs.collapse', function () {
                 toggleBtn.style.visibility = 'hidden';
             });
 
-            searchCollapse.addEventListener('hidden.bs.collapse', function() {
+            searchCollapse.addEventListener('hidden.bs.collapse', function () {
                 toggleBtn.style.visibility = 'visible';
             });
         });

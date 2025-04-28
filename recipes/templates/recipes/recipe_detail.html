@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="container" style="padding-bottom: 50px;">
-        <a class="return-link float-start" style="margin-bottom: 25px; text-decoration: none;" href="{% url 'recipe_list' %}"><i class="bi bi-arrow-left-square-fill"></i> Back To All Recipes</a>
+        <a class="return-link float-start" style="margin-bottom: 25px; text-decoration: none;" href="javascript:history.back()"><i class="bi bi-arrow-left-square-fill"></i> Return</a>
         {% if recipe.image %}
             <div class="recipe-img mt-5">
                 <img src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">

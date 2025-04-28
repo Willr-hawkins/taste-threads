@@ -149,6 +149,19 @@ html, body {
     text-decoration: underline 2.5px #F1E9D0;   
 }
 
+.offcanvas {
+    height: 150px !important;
+}
+
+.offcanvas .nav-link {
+    font-size: larger;
+}
+
+.offcanvas-body,
+.offcanvas-header {
+    background-color: #bde0fe !important;
+}
+
 /* Allauth templates */
 .allauth-container {
     padding-top: 93px;
@@ -195,7 +208,7 @@ html, body {
 }
 
 .intro {
-    margin-top: 124px;
+    margin-top: 120px;
 }
 
 .intro-text {
@@ -208,6 +221,9 @@ html, body {
     border-radius: 25px;
     padding-top: 9px;
     min-height: 260px;
+    text-align: start;
+    max-width: 80%;
+    margin: 0 auto;
 }
 
 .signup-box h2 {
@@ -235,12 +251,16 @@ html, body {
     background-color: #F1E9D0;
 }
 
+.popular-recipes-container {
+    padding-bottom: 30px;
+}
 
 .popular-recipes {
     background-color: #f8a0cb;
     border: 3px solid #686868;
     border-radius: 20px;
     margin-top: 82px;
+    padding-bottom: 30px;
 }
 
 /* recipes page */
@@ -421,6 +441,16 @@ html, body {
 
 /* phone sized screeens */
 @media (max-width: 767px) {
+
+    .intro {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .signup-box {
+        margin-top: 50px;
+    }
+
     .card-body {
         margin-left: 0;
         margin-top: 10px;
