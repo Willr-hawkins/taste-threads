@@ -13,11 +13,11 @@
                                 <div class="col-md-4">
                                     <div class="card-img-container">
                                         {% if recipe.image %}
-                                        <a href="{% url 'recipe_detail' recipe.id %}">
+                                        <a href="{% url 'recipe_detail' recipe_id=recipe.pk %}">
                                             <img src="{{ recipe.image.url }}" class="card-img-top object-fit-cover" alt="{{ recipe.recipe_name }}">
                                         </a>
                                         {% else %}
-                                        <a href="{% url 'recipe_detail' recipe.id %}">
+                                        <a href="{% url 'recipe_detail' recipe_id=recipe.pk %}">
                                             <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top object-fit-cover" alt="{{ recipe.recipe_name }}">
                                         </a>
                                         {% endif %}

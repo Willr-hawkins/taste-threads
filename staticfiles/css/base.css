@@ -401,6 +401,14 @@ html, body {
     color: #f8a0cb;
 }
 
+/* Forms */
+
+.create-recipe-container {
+    border: solid 5px #686868;
+    border-radius: 20px;
+    background-color: #bde0fe;
+}
+
 .edit-profile-form input,
 .edit-profile-form textarea,
 .edit-profile-form .form-select {
@@ -426,14 +434,16 @@ html, body {
     background-color: white;
 }
 
-.edit-form-btn {
+.edit-form-btn,
+.create-recipe-btn {
     border: solid 3px #f8a0cb;
     border-radius: 10px;
     margin: 5px;
     transition: 0.3s;
 }
 
-.edit-form-btn:hover {
+.edit-form-btn:hover,
+.create-recipe-btn:hover {
     transform: scale(1.1);
     background-color: #f8a0cb;
 }
