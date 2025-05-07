@@ -17,12 +17,22 @@ class Ingredient(models.Model):
         choices=[
             ('g', 'grams'),
             ('ml', 'milliliters'),
+            ('l', 'litres'),
             ('cup', 'cups'),
             ('tbsp', 'tablespoons'),
             ('tsp', 'teaspoons'),
             ('oz', 'ounces'),
             ('large', 'large'),
             ('small', 'small'),
+            ('slices', 'slices'),
+            ('pints', 'pints'),
+            ('pinches', 'pinches'),
+            ('whole', 'whole'),
+            ('half', 'half'),
+            ('cloves', 'cloves'),
+            ('sticks', 'sticks'),
+            ('handfuls', 'handfuls'),
+            ('knobs', 'knobs'),
         ]
     )
 
@@ -44,6 +54,13 @@ class Ingredient(models.Model):
             'ounces': 'ounce',
             'large': 'large',
             'small': 'small',
+            'slices': 'slice',
+            'litres': 'litre',
+            'cloves': 'clove',
+            'sticks': 'stick',
+            'handfuls': 'handful',
+            'knobs': 'knob',
+            'pinches': 'pinch',
         }
 
         unit_display = dict(self._meta.get_field('unit_of_measurement').choices).get(self.unit_of_measurement, '')
