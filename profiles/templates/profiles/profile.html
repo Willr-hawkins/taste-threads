@@ -30,11 +30,15 @@
                         {% if request.user == recipe.chef %}
                             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
                                 <div class="profile-recipe-card" style="max-width: 22rem;">
-                                    <div class="card-img-container">
+                                    <div class="profile-card-img-container">
                                         {% if recipe.image %}
-                                        <a href="{% url 'recipe_detail' recipe.id %}">
-                                            <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.recipe_name }}">
-                                        </a>
+                                            <a href="{% url 'recipe_detail' recipe.id %}?next={{ request.path }}">
+                                                <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.recipe_name }}">
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url 'recipe_detail' recipe.id %}?next={{ request.path }}">
+                                                <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top" alt="{{ recipe.recipe_name }}">
+                                            </a>
                                         {% endif %}
                                     </div>
                                     <div class="profile-card-body">

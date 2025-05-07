@@ -31,7 +31,7 @@ def create_recipe(request):
                 obj.recipe = recipe
                 obj.save()
 
-            return redirect('recipe_detail', recipe_id=recipe.pk)
+            return redirect(f'/recipes/{recipe.pk}?next=/recipes/')
     else:
         form = RecipeForm()
         ingredient_formset = IngredientFormSet(queryset=Ingredient.objects.none(), prefix='ingredient')
@@ -53,9 +53,11 @@ def recipe_list(request):
 def recipe_detail(request, recipe_id):
     """ A view to show the an individual recipes details page. """
     recipe = get_object_or_404(Recipe, pk=recipe_id)
+    next_url = request.GET.get('next', '/recipes/')
 
     context = {
         'recipe': recipe,
+        'next_url': next_url,
     }
 
     return render(request, 'recipes/recipe_detail.html', context)

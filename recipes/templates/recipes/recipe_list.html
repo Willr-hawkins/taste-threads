@@ -47,7 +47,7 @@
     </div>
 
     <script>
-        // Sync cards heights together so the image and card-body are the same hieght when in horizontal mode.
+        // Sync card image container height with card-body
         function syncCardHeights() {
             const cards = document.querySelectorAll(".card");
     
@@ -61,25 +61,45 @@
             });
         }
     
-        document.addEventListener("DOMContentLoaded", syncCardHeights);
-        window.addEventListener("resize", syncCardHeights);;
-
-        // Function to allow the recipe description to be collapsed on smaller screens and expanded with a button.
         document.addEventListener("DOMContentLoaded", function () {
-                const buttons = document.querySelectorAll(".read-more-btn");
-
-                buttons.forEach(btn => {
-                    btn.addEventListener("click", () => {
-                        const targetId = btn.getAttribute("data-target");
-                        const desc = document.getElementById(targetId);
-
-                        desc.classList.toggle("expanded");
-                        desc.classList.toggle("collapsed");
-
-                        btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
-                    });
+            const buttons = document.querySelectorAll(".read-more-btn");
+    
+            buttons.forEach(btn => {
+                const targetId = btn.getAttribute("data-target");
+                const desc = document.getElementById(targetId);
+    
+                // Check if content overflows and show/hide button
+                if (desc.scrollHeight <= desc.clientHeight) {
+                    btn.style.display = "none";
+                } else {
+                    btn.style.display = "inline";
+                }
+    
+                btn.addEventListener("click", () => {
+                    desc.classList.toggle("expanded");
+                    desc.classList.toggle("collapsed");
+                    btn.textContent = desc.classList.contains("expanded") ? "Read less" : "Read more";
+    
+                    const cardBody = btn.closest('.card-body');
+    
+                    // Wait for transition to complete before syncing heights
+                    const onTransitionEnd = () => {
+                        syncCardHeights();
+                        cardBody.removeEventListener('transitionend', onTransitionEnd);
+                    };
+                    cardBody.addEventListener('transitionend', onTransitionEnd);
+    
+                    // Force a reflow to restart the transition if needed
+                    cardBody.offsetHeight; // triggers reflow
                 });
             });
+    
+            // Initial sync for consistent layout
+            syncCardHeights();
+    
+            // Optional: re-sync on window resize
+            window.addEventListener('resize', syncCardHeights);
+        });
     </script>
 {% endblock %}
 
