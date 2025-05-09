@@ -251,16 +251,44 @@ html, body {
     background-color: #F1E9D0;
 }
 
-.popular-recipes-container {
+.newest-recipes-container {
     padding-bottom: 30px;
 }
 
-.popular-recipes {
+.newest-recipes {
     background-color: #f8a0cb;
     border: 3px solid #686868;
     border-radius: 20px;
     margin-top: 82px;
     padding-bottom: 30px;
+}
+
+.newest-recipes-card-img-container {
+    overflow: hidden;
+    border: solid 3px #686868;
+    border-radius: 20px;
+    height: 290px;
+}
+
+.newest-card-body {
+    background-color: #F1E9D0 !important;
+    border: solid 3px #686868;
+    border-radius: 20px !important;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.newest-recipes-card {
+    background-color: #bde0fe !important;
+    border: solid 5px #686868 !important;
+    border-radius: 20px !important;
+    padding: 10px !important;
+    width: 300px;
+    transition: 0.3s;
+}
+
+.newest-recipes-card:hover {
+    transform: scale(1.1);
 }
 
 /* recipes page */

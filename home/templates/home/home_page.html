@@ -51,11 +51,33 @@
     </div>
 
     <!-- Display the current most popular recipes throught the whole site. -->
-    <div class="container popular-recipes-container">
-        <div class="popular-recipes px-lg-4">
-            <h1 class="text-center dim-gray">POPULAR RECIPES</h1>
+    <div class="container newest-recipes-container">
+        <div class="newest-recipes px-lg-4">
+            <h1 class="text-center dim-gray">NEW RECIPES</h1>
             <hr>
-            <h2 class="text-center dim-gray">COMING SOON</h2>
+            <div class="row">
+                {% for recipe in latest_recipes %}
+                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                    <div class="newest-recipes-card" style="max-width: 22rem;">
+                        <div class="newest-recipes-card-img-container">
+                            {% if recipe.image %}
+                            <a href="{% url 'recipe_detail' recipe.id %}?next={{ request.path }}">
+                                <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.recipe_name }}">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'recipe_detail' recipe.id %}?next={{ request.path }}">
+                                <img src="{{ MEDIA_URL }}noimage.png" class="card-img-top" alt="{{ recipe.recipe_name }}">
+                            </a>
+                            {% endif %}
+                        </div>
+                        <div class="newest-card-body">
+                            <h3 class="card-text dim-gray text-center">{{ recipe.recipe_name }}</h3>
+                            <p class="text-center"><small>| Posted {{ recipe.posted_at|timesince }} ago. |</small></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
