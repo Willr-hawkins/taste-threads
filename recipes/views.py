@@ -6,6 +6,23 @@ from django.forms import modelformset_factory
 from .models import Recipe, Ingredient, Instruction
 from .forms import RecipeForm, IngredientForm, InstructionForm, IngredientFormSet, InstructionFormSet
 
+def recipe_list(request):
+    """ A view to show a list of all recipes on the site. """
+    recipes = Recipe.objects.all().order_by('-posted_at')  # Fetch all recipes, latest first
+    return render(request, 'recipes/recipe_list.html', {'recipes': recipes, 'MEDIA_URL': settings.MEDIA_URL})
+
+def recipe_detail(request, recipe_id):
+    """ A view to show the an individual recipes details page. """
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    next_url = request.GET.get('next', '/recipes/')
+
+    context = {
+        'recipe': recipe,
+        'next_url': next_url,
+    }
+
+    return render(request, 'recipes/recipe_detail.html', context)
+
 @login_required
 def create_recipe(request):
     IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm, extra=1)
@@ -45,20 +62,30 @@ def create_recipe(request):
 
     return render(request, 'recipes/create_recipe.html', context)
 
-def recipe_list(request):
-    """ A view to show a list of all recipes on the site. """
-    recipes = Recipe.objects.all().order_by('-posted_at')  # Fetch all recipes, latest first
-    return render(request, 'recipes/recipe_list.html', {'recipes': recipes, 'MEDIA_URL': settings.MEDIA_URL})
+@login_required
+def edit_recipe(request, pk):
+    """ Allow users to edit previously uploaded recipes from their account/Profile. """
+    recipe = get_object_or_404(Recipe, pk=pk, chef=request.user)
 
-def recipe_detail(request, recipe_id):
-    """ A view to show the an individual recipes details page. """
-    recipe = get_object_or_404(Recipe, pk=recipe_id)
-    next_url = request.GET.get('next', '/recipes/')
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
+        ingredient_formset = IngredientFormSet(request.POST, instance=recipe)
+        instruction_formset = InstructionFormSet(request.POST, instance=recipe)
 
+        if form.is_valid() and ingredient_formset.is_valid() and instruction_formset.is_valid():
+            form.save()
+            ingredient_formset.save()
+            instruction_formset.save()
+            return redirect('user_profile')
+    else:
+        form = RecipeForm(instance=recipe)
+        ingredient_formset = IngredientFormSet(instance=recipe)
+        instruction_formset = InstructionFormSet(instance=recipe)
+    
     context = {
-        'recipe': recipe,
-        'next_url': next_url,
+        'form': form,
+        'ingredient_formset': ingredient_formset,
+        'instruction_formset': instruction_formset,
     }
-
-    return render(request, 'recipes/recipe_detail.html', context)
+    return render(request, 'recipes/edit_recipe.html', context)
 

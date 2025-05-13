@@ -475,6 +475,33 @@ html, body {
     color: #f8a0cb;
 }
 
+.recipe-options-dropdown {
+    border: none;
+    background-color: #f8a0cb;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+
+.recipe-options {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.recipe-options-dropdown-menu {
+    background-color: #f8a0cb !important;
+    display: none !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+    gap: 2px !important;
+    border: none !important;
+}
+
+.recipe-options-dropdown-menu .dropdown-item:hover {
+    background-color: #f8a0cb !important;
+    text-decoration: underline 2.5px #F1E9D0 !important;
+}
+
 /* Forms */
 
 .create-recipe-container {
