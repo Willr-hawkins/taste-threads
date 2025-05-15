@@ -454,11 +454,6 @@ html, body {
     border-radius: 20px !important;
     padding: 10px !important;
     width: 300px;
-    transition: 0.3s;
-}
-
-.profile-recipe-card:hover {
-    transform: scale(1.1);
 }
 
 .profile-settings {
@@ -486,6 +481,12 @@ html, body {
 .recipe-options {
     font-weight: 600;
     font-size: 1.4rem;
+    transition: 0.3s;
+}
+
+.recipe-options:hover {
+    transform: scale(1.2);
+    color: #F1E9D0;
 }
 
 .recipe-options-dropdown-menu {

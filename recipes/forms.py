@@ -35,9 +35,9 @@ class InstructionForm(forms.ModelForm):
 
 # Use inlineformat to handle the ingredients and instructions in the form.
 IngredientFormSet = inlineformset_factory(
-    Recipe, Ingredient, form = IngredientForm, extra = 1, can_delete=True
+    Recipe, Ingredient, form = IngredientForm, extra = 0, can_delete=True
 )
 
 InstructionFormSet = inlineformset_factory(
-    Recipe, Instruction, form = InstructionForm, extra=1, can_delete=True
+    Recipe, Instruction, form = InstructionForm, extra=0, can_delete=True
 )

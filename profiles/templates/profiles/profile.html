@@ -34,11 +34,11 @@
                                     <div class="d-none d-md-flex align-items-center">
                                         <div class="dropdown dropend">
                                             <button class="float-end recipe-options-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="bi bi-three-dots dim-gray recipe-options"></i>
+                                                <i class="bi bi-gear-wide-connected dim-gray recipe-options"></i>
                                             </button>
                                             <ul class="dropdown-menu recipe-options-dropdown-menu">
                                                 <li><a class="dropdown-item libre-baskerville" href="{% url 'edit_recipe' recipe.pk %}">Edit</a></li>
-                                                <li><a class="dropdown-item libre-baskerville" href="{% url 'account_logout' %}">Delete</a></li>
+                                                <li><a class="dropdown-item libre-baskerville" href="{% url 'delete_recipe' recipe.pk %}">Delete</a></li>
                                             </ul>
                                         </div>
                                     </div>

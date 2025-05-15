@@ -89,3 +89,18 @@ def edit_recipe(request, pk):
     }
     return render(request, 'recipes/edit_recipe.html', context)
 
+@login_required
+def delete_recipe(request, pk):
+    """ Delete a recipe posting if the user is the chef. """
+    recipe = get_object_or_404(Recipe, pk=pk, chef=request.user)
+
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('user_profile')
+    
+    context = {
+        'recipe': recipe,
+    }
+
+    return render (request, 'recipes/delete_recipe.html', context)
+
