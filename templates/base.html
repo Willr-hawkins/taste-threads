@@ -36,29 +36,44 @@
     <nav class="navbar" style="background-color: #bde0fe; position: relative;">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <!-- Offcanvas toggler for small screens -->
-            <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav"
+            <button class="btn d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav"
                 aria-controls="offcanvasNav">
                 <i class="bi bi-list" style="font-size: 1.5rem;"></i>
             </button>
 
             <!-- Left side of Nav (hidden on small screens) -->
-            <div class="d-none d-md-flex align-items-center">
+            <div class="d-none d-xl-flex align-items-center">
                 <div class="dropdown dropend me-2">
                     <button class="profile-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle dim-gray profile ms-2"></i>
                     </button>
                     <ul class="dropdown-menu">
                         {% if user.is_authenticated %}
-                            <li><a class="dropdown-item libre-baskerville" href="{% url 'user_profile' %}">Profile</a></li>
-                            <li><a class="dropdown-item libre-baskerville" href="#">Wishlists</a></li>
-                            <li><a class="dropdown-item libre-baskerville" href="{% url 'account_logout' %}">Logout</a></li>
+                            {% if has_profile %}
+                                <li><a class="dropdown-item libre-baskerville" href="{% url 'user_profile' %}">Profile</a></li>
+                                <li><a class="dropdown-item libre-baskerville" href="#">Wishlists</a></li>
+                                <li><a class="dropdown-item libre-baskerville" href="{% url 'account_logout' %}">Logout</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item libre-baskerville" href="{% url 'create_profile' %}">Create Profile</a></li>
+                            {% endif %}
                         {% else %}
                             <li><a class="dropdown-item libre-baskerville" href="{% url 'account_login' %}">Login</a></li>
                             <li><a class="dropdown-item libre-baskerville" href="{% url 'account_signup' %}">Sign Up</a></li>
                         {% endif %}
                     </ul>
                 </div>
-                <a href="{% url 'recipe_list' %}" class="recipes-link dim-gray libre-baskerville ms-3">Recipes</a>
+                <a href="{% url 'home' %}" class="recipes-link dim-gray libre-baskerville ms-4">Home</a>
+                <a href="{% url 'recipe_list' %}" class="recipes-link dim-gray libre-baskerville ms-4">All Recipes</a>
+                <div class="categories-dropdown">
+                    <button class="categories-btn recipes-link dim-gray libre-baskerville ms-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Categories
+                    </button>
+                    <ul class="dropdown-menu categories-dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
                 {% if user.is_authenticated %}
                         <a class="recipes-link dim-gray libre-baskerville ms-4" href="{% url 'create_recipe' %}">Upload</a>
                 {% endif %}
@@ -89,25 +104,30 @@
         </div>
 
         <!-- Offcanvas menu for small screens (TOP) -->
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas offcanvas-top" style="height: 40% !important;" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
             <div class="offcanvas-header">
                 <h3 class="offcanvas-title dim-gray libre-baskerville" id="offcanvasNavLabel">Menu</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body d-flex justify-content-center">
-                <div class="d-flex flex-wrap justify-content-center gap-3">
+            <div class="offcanvas-body d-flex justify-content-center min-vh-50">
+                <div class="d-flex flex-column align-items-center">
+                    <a href="{% url 'home' %}" class="nav-link dim-gray libre-baskerville mb-2">Home</a>
+                    <a class="nav-link dim-gray libre-baskerville mb-2" href="{% url 'recipe_list' %}">Recipes</a>
                     {% if user.is_authenticated %}
-                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'user_profile' %}">Profile</a>
-                        <a class="nav-link dim-gray libre-baskerville" href="#">Wishlists</a>
-                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'account_logout' %}">Logout</a>
-                    {% else %}
-                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'account_login' %}">Login</a>
-                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'account_signup' %}">Sign Up</a>
+                        <a class="nav-link dim-gray libre-baskerville mb-2" href="{% url 'create_recipe' %}">Upload</a>
                     {% endif %}
-                    <p> | </p>
-                    <a class="nav-link dim-gray libre-baskerville" href="{% url 'recipe_list' %}">Recipes</a>
+                    <hr>
                     {% if user.is_authenticated %}
-                        <a class="nav-link dim-gray libre-baskerville" href="{% url 'create_recipe' %}">Upload</a>
+                        {% if has_profile %}
+                            <li><a class="dropdown-item libre-baskerville" href="{% url 'user_profile' %}">Profile</a></li>
+                            <li><a class="dropdown-item libre-baskerville" href="#">Wishlists</a></li>
+                            <li><a class="dropdown-item libre-baskerville" href="{% url 'account_logout' %}">Logout</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item libre-baskerville" href="{% url 'create_profile' %}">Create Profile</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a class="dropdown-item libre-baskerville" href="{% url 'account_login' %}">Login</a></li>
+                        <li><a class="dropdown-item libre-baskerville" href="{% url 'account_signup' %}">Sign Up</a></li>
                     {% endif %}
                 </div>
             </div>

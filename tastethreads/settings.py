@@ -83,6 +83,8 @@ TEMPLATES = [
                 'django.template.context_processors.request', # Required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'profiles.context_processors.profile_status',
             ],
         },
     },
@@ -102,19 +104,33 @@ AUTHENTICATION_BACKENDS = [
 # Site ID ~ Required for allauth
 SITE_ID = 1
 
-# Allauth settings
-ACCOUNT_LOGIN_METHOD = 'email'
+# ----------------------------------------
+# Django Allauth Configuration
+# ----------------------------------------
+
+# Allow login via username or email
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+# Require email signup, but no username initially
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'  # default for Django’s User
 
-# Login/Logout redirect URLs
+# Don’t auto‑log in on signup; do log in on email confirmation
+ACCOUNT_LOGIN_ON_SIGNUP = False
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
+
+# Redirect URLs
 LOGIN_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_REDIRECT_URL = "/"
-ACCOUNT_SIGNUP_REDIRECT_URL = '/profile/edit/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/accounts/email-verification-sent/'
 
-# Email settings
+# (Optional) alias for clarity, same as LOGIN_REDIRECT_URL
+ACCOUNT_LOGIN_REDIRECT_URL = LOGIN_REDIRECT_URL
+
+# Use console backend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 WSGI_APPLICATION = 'tastethreads.wsgi.application'
